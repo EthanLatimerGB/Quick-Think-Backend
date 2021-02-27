@@ -1,0 +1,27 @@
+{
+	"name": "quick-think-be",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "NODE_ENV=dev nodemon index.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"apollo-server": "^2.21.0",
+		"bcrypt": "^5.0.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"graphql": "^15.5.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.11.18",
+		"mongoose-unique-validator": "^2.0.3",
+		"nodemon": "^2.0.7",
+		"uuid": "^8.3.2"
+	},
+	"devDependencies": {
+		"eslint": "^7.20.0"
+	}
+}
