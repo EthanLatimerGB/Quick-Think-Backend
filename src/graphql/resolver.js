@@ -146,6 +146,21 @@ const resolver = {
 
 			return true;
 		},
+		verifyResponse: async (root, args, context) => {
+			const listID = context.currentUser.listID;
+			const passed = await resolverFuntions.consistantCounterAndVerification(
+				args,
+				listID
+			);
+
+			const { items } = await List.findById(listID);
+			const updatedItem = items.find((item) => item.id === args.itemID);
+
+			return {
+				correct: passed,
+				item: updatedItem,
+			};
+		},
 	},
 };
 

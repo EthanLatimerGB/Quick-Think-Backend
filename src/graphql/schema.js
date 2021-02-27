@@ -26,6 +26,11 @@ const typeDefs = gql`
 		value: String!
 	}
 
+	type boolResponse {
+		correct: Boolean
+		item: Item
+	}
+
 	type Query {
 		listUsers: [User]
 		me: User
@@ -43,7 +48,7 @@ const typeDefs = gql`
 			gender: String
 		): Item
 		deleteItem(itemID: String!): Boolean
-		verifyResponse(inputWord: String!, itemId: String!): Boolean
+		verifyResponse(inputWord: String!, itemID: String!): boolResponse
 	}
 `;
 
