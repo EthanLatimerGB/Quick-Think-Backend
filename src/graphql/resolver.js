@@ -9,8 +9,10 @@ const {
 const jwt = require("jsonwebtoken");
 const config = require("../utils/config");
 const { v1: uuid } = require("uuid");
+const _ = require("lodash");
 
 const validator = require("../utils/validator");
+const resolverFuntions = require("../utils/resolverFunctions");
 
 const resolver = {
 	Query: {
@@ -20,6 +22,32 @@ const resolver = {
 		},
 		me: async (root, args, context) => {
 			return context.currentUser;
+		},
+		fetchRandomItem: async (root, args, context) => {
+			const items = await resolverFuntions.fetchUsersList(
+				context.currentUser
+			);
+			const randomItem = _.sample(items);
+
+			return randomItem;
+		},
+		fetchSpecificItem: async (root, args, context) => {
+			const items = await resolverFuntions.fetchUsersList(
+				context.currentUser
+			);
+			const foundItem = _.find(items, (obj) => obj.id === args.itemID);
+
+			if (!foundItem)
+				throw new ApolloError("Could not find an item with that id");
+
+			return foundItem;
+		},
+		totalItemsCompleted: async (root, args, context) => {
+			const items = await resolverFuntions.fetchUsersList(
+				context.currentUser
+			);
+
+			return items.length;
 		},
 	},
 	Mutation: {
@@ -112,10 +140,9 @@ const resolver = {
 			validator.userValidator(currentUser);
 			const listID = currentUser.listID;
 
-
-			await List.findByIdAndUpdate(listID, {
-				$pull: { items: { _id: itemID }}
-			});
+			const fetchedList = await List.findById(listID);
+			fetchedList.items.pull(itemID);
+			fetchedList.save();
 
 			return true;
 		},

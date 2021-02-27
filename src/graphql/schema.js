@@ -26,23 +26,23 @@ const typeDefs = gql`
 		value: String!
 	}
 
-	type SuccessIndicator {
-		success: Boolean
-	}
-
 	type Query {
 		listUsers: [User]
 		me: User
 		fetchRandomItem: Item
-		fetchSpecificItem(id: ID!): Item
+		fetchSpecificItem(itemID: String!): Item
 		totalItemsCompleted: Int
 	}
 
 	type Mutation {
 		login(username: String!, password: String!): Token
 		createAccount(name: String!, username: String!, password: String!): User
-		createItem(itemEnglish: String!, itemForeign: String!, gender: String): Item
-		deleteItem(itemID: String!): SuccessIndicator
+		createItem(
+			itemEnglish: String!
+			itemForeign: String!
+			gender: String
+		): Item
+		deleteItem(itemID: String!): Boolean
 		verifyResponse(inputWord: String!, itemId: String!): Boolean
 	}
 `;
