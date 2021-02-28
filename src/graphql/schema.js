@@ -23,7 +23,12 @@ const typeDefs = gql`
 	}
 
 	type Token {
-		value: String!
+		token: String!
+	}
+
+	type TokenAndUser {
+		token: String!,
+		user: User!
 	}
 
 	type boolResponse {
@@ -41,7 +46,7 @@ const typeDefs = gql`
 
 	type Mutation {
 		login(username: String!, password: String!): Token
-		createAccount(name: String!, username: String!, password: String!): User
+		createAccount(name: String!, username: String!, password: String!): TokenAndUser
 		createItem(
 			itemEnglish: String!
 			itemForeign: String!

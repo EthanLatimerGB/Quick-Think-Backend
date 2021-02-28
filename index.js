@@ -22,6 +22,7 @@ const asyncronousRun = async () => {
 		.catch((e) => console.log(`--An error has occured - ${e.message}`));
 
 	const server = new ApolloServer({
+		cors: true ,
 		typeDefs,
 		resolvers: resolver,
 		context: async ({ req }) => {

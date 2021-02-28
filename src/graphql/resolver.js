@@ -75,7 +75,17 @@ const resolver = {
 					userID: savedUser.id,
 				});
 
-				return savedUser;
+				const userTokenObject = {
+					username: savedUser.username,
+					id: savedUser._id,
+				};
+	
+				const token = jwt.sign(userTokenObject, config.jwtSecret);
+
+				return {
+					token,
+					user: savedUser
+				};
 			} catch (e) {
 				throw new ValidationError(e);
 			}
@@ -111,7 +121,7 @@ const resolver = {
 			const token = jwt.sign(userTokenObject, config.jwtSecret);
 
 			return {
-				value: token,
+				token: token,
 			};
 		},
 		createItem: async (root, args, context) => {
