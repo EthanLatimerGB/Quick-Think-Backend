@@ -1,7 +1,7 @@
 # Quick-Think-Backend
 
 ## Usage
-The main use of this server is to be used along with Quick-Think-Frontend (https://example.com) to act as a backend server to provide CRUD database managment and authorization methods for the Frontend part of the application to exploit. 
+The main use of this server is to be used along with Quick-Think-Frontend (https://github.com/EthanLatimerGB/Quick-Think-Frontend) to act as a backend server to provide CRUD database managment and authorization methods for the Frontend part of the application to exploit. 
 
 
 ## Setup
