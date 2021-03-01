@@ -38,6 +38,7 @@ const typeDefs = gql`
 
 	type Query {
 		listUsers: [User]
+		listItems: [Item]
 		me: User
 		fetchRandomItem: Item
 		fetchSpecificItem(itemID: String!): Item

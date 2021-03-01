@@ -20,6 +20,13 @@ const resolver = {
 			const users = await User.find({});
 			return users;
 		},
+		listItems: async (root, args, context) => {
+			const items = await resolverFuntions.fetchUsersList(
+				context.currentUser
+			);
+
+			return items;
+		},
 		me: async (root, args, context) => {
 			return context.currentUser;
 		},
@@ -27,7 +34,9 @@ const resolver = {
 			const items = await resolverFuntions.fetchUsersList(
 				context.currentUser
 			);
-			const randomItem = _.sample(items);
+
+			const filteredList = _.filter(items, item => item.completed !== true);
+			const randomItem = _.sample(filteredList);
 
 			return randomItem;
 		},

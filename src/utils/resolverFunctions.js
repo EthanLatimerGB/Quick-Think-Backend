@@ -34,7 +34,6 @@ const consistantCounterAndVerification = async (
 		throw new ValidationError("Item does not exist with that ID");
 	}
 
-	console.log("FUcking wanker lol");
 	const fetchedList = await List.findById(listID);
 	const { settings } = await User.findById(fetchedList.userID);
 
@@ -43,14 +42,14 @@ const consistantCounterAndVerification = async (
 		if (item.id === itemID) {
 			if (inputWord === item.itemForeign) {
 				correct = true;
-				if (item.consistantCounter > 1) {
-					item.consistantCounter -= 1;
-				} else {
-					item.consistantCounter = 0;
+				if (item.consistantCounter === settings.correctUntilComplete) {
+					item.consistantCounter = settings.correctUntilComplete;
 					item.completed = true;
+				} else {
+					item.consistantCounter += 1;
 				}
 			} else {
-				item.consistantCounter = settings.correctUntilComplete;
+				item.consistantCounter = 0;
 			}
 		}
 	});
