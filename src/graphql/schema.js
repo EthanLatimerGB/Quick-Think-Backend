@@ -52,9 +52,10 @@ const typeDefs = gql`
 			itemEnglish: String!
 			itemForeign: String!
 			gender: String
-		): Item
+		): Boolean
 		deleteItem(itemID: String!): Boolean
 		verifyResponse(inputWord: String!, itemID: String!): boolResponse
+		changeCorrectUntilComplete(number: Int): Boolean
 	}
 `;
 

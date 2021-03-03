@@ -61,4 +61,5 @@ const consistantCounterAndVerification = async (
 module.exports = {
 	fetchUsersList,
 	consistantCounterAndVerification,
+	findSingularItem
 };

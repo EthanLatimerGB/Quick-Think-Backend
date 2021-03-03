@@ -151,7 +151,7 @@ const resolver = {
 			fetchedList.items.push(itemObject);
 			await fetchedList.save();
 
-			return itemObject;
+			return true;
 		},
 		deleteItem: async (root, args, context) => {
 			const itemID = args.itemID;
